@@ -9,7 +9,7 @@ namespace Bds.TechTest.Wpf.SearchService.Bds.TechTest
     /// <remarks>https://www.mediawiki.org/wiki/API:Search#API_documentation</remarks>
     internal class WikipediaEngine : ISearchEngine
     {
-        private HttpClient httpClient;
+        private readonly HttpClient httpClient;
 
         public WikipediaEngine()
         {

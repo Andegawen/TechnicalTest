@@ -13,5 +13,4 @@ namespace Bds.TechTest.Wpf.SearchService
             Task<IEnumerable<SearchResult>> GetResults(string phrase);
         }
     }
-
 }

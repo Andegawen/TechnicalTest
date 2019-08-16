@@ -13,13 +13,22 @@ namespace Bds.TechTest.Wpf
 {
     public partial class App : Application
     {
+        private IContainer root;
+
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
             var builder = new ContainerBuilder();
             builder.RegisterModule<SearchModule>();
-            var root = builder.Build();
-            var engine = root.Resolve<SearchAggregatorService>();
+            builder.RegisterType<MainViewModel>().AsSelf();
+            root = builder.Build();
+        }
+
+        protected override void OnActivated(EventArgs e)
+        {
+            base.OnActivated(e);
+            if(this.MainWindow != null && MainWindow.DataContext == null)
+                this.MainWindow.DataContext = root.Resolve<MainViewModel>();
         }
     }
 }

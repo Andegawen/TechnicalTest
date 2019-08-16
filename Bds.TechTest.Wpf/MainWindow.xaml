@@ -4,11 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bds.TechTest.Wpf"
+        xmlns:converters="clr-namespace:Bds.TechTest.Wpf.Converters"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Window.DataContext>
+    <d:Window.DataContext>
         <local:MainViewModel/>
-    </Window.DataContext>
+    </d:Window.DataContext>
+    <Window.Resources>
+        <converters:BooleanToVisibilityConverter Inverse="True" x:Key="InvertedBooleanToVisibilityConverter"/>
+        <converters:BooleanToVisibilityConverter Inverse="False" x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -22,9 +27,9 @@
                 <ColumnDefinition Width="50"/>
             </Grid.ColumnDefinitions>
             <TextBox Grid.Column="0" Text="{Binding Phrase}"/>
-            <Button Grid.Column="1" Content="Search" Command="{Binding Search}"/>
+            <Button Grid.Column="1" Content="Search" Command="{Binding SearchCommand}"/>
         </Grid>
-        <DataGrid Grid.Row="2">
+        <DataGrid Grid.Row="2" ItemsSource="{Binding SearchResults}">
 
         </DataGrid>
         

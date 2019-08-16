@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace Bds.TechTest.Wpf.SearchService
@@ -11,7 +12,7 @@ namespace Bds.TechTest.Wpf.SearchService
             Task<IEnumerable<SearchResult>> GetResults(string phrase);
         }
 
-        class GoogleEngine : ISearchEngine
+        internal class GoogleEngine : ISearchEngine
         {
             private static readonly HttpClient client = new HttpClient();
             public async Task<IEnumerable<SearchResult>> GetResults(string phrase)

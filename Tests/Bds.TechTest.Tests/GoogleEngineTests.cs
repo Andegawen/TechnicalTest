@@ -1,8 +1,9 @@
+using Bds.TechTest.Wpf.SearchService.Bds.TechTest;
 using NUnit.Framework;
 
 namespace Bds.TechTest.Tests
 {
-    public class Tests
+    public class GoogleEngineTests
     {
         [SetUp]
         public void Setup()
@@ -12,7 +13,7 @@ namespace Bds.TechTest.Tests
         [Test]
         public void Test1()
         {
-            Assert.Pass();
+            var engine = new GoogleEngine();
         }
     }
 }

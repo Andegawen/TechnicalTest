@@ -1,9 +1,10 @@
+using System.Threading.Tasks;
 using Bds.TechTest.Wpf.SearchService.Bds.TechTest;
 using NUnit.Framework;
 
 namespace Bds.TechTest.Tests
 {
-    public class GoogleEngineTests
+    public class WikipediaEngineTests
     {
         [SetUp]
         public void Setup()
@@ -13,7 +14,11 @@ namespace Bds.TechTest.Tests
         [Test]
         public void Test1()
         {
-            var engine = new GoogleEngine();
+            var engine = new WikipediaEngine();
+
+            TestDelegate td = ()=>engine.GetResults("xxx").GetAwaiter().GetResult();
+
+            Assert.DoesNotThrow(td);
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Bds.TechTest.Wpf.SearchService
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<GoogleEngine>().As<ISearchEngine>();
+            builder.RegisterType<WikipediaEngine>().As<ISearchEngine>();
             builder.RegisterType<SearchAggregatorService>().AsSelf();
         }
     }

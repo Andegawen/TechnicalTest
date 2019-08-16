@@ -5,13 +5,21 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Autofac;
+using Bds.TechTest.Wpf.SearchService;
+using Bds.TechTest.Wpf.SearchService.Bds.TechTest;
 
 namespace Bds.TechTest.Wpf
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            var builder = new ContainerBuilder();
+            builder.RegisterModule<SearchModule>();
+            var root = builder.Build();
+            var engine = root.Resolve<SearchAggregatorService>();
+        }
     }
 }

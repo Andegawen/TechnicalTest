@@ -10,6 +10,7 @@ namespace Bds.TechTest.Wpf
     class MainViewModel : INotifyPropertyChanged
     {
         private string _phrase;
+        private IList<SearchResult> _searchResults;
 
         public MainViewModel(SearchAggregatorService searchAggregatorService)
         {
@@ -38,7 +39,16 @@ namespace Bds.TechTest.Wpf
 
         public bool Pending { get; set; } = false;
 
-        public IList<SearchResult> SearchResults { get; set; }
+        public IList<SearchResult> SearchResults
+        {
+            get => _searchResults;
+            set
+            {
+                _searchResults = value;
+                OnPropertyChanged();
+            }
+        }
+
         public DelegateCommand SearchCommand { get; set; }
         
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

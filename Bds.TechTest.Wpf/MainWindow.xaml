@@ -29,9 +29,19 @@
             <TextBox Grid.Column="0" Text="{Binding Phrase}"/>
             <Button Grid.Column="1" Content="Search" Command="{Binding SearchCommand}"/>
         </Grid>
-        <DataGrid Grid.Row="2" ItemsSource="{Binding SearchResults}">
+
+        <DataGrid Grid.Row="2" ItemsSource="{Binding SearchResults}" 
+                  AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"
+                  CanUserResizeColumns="True" CanUserReorderColumns="True" RowHeaderWidth="0" HeadersVisibility="Column"
+                  HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" SelectionMode="Single" SelectionUnit="FullRow">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Source" CanUserSort="True" SortMemberPath="Line" Binding="{Binding Source}"/>
+                <DataGridTextColumn Width="2*" Header="Title" CanUserSort="True" SortMemberPath="Code" Binding="{Binding Title}" />
+                <DataGridTextColumn Width="*" Header="Description" CanUserSort="True" SortMemberPath="Title" Binding="{Binding Description}" />
+                <DataGridTextColumn Width="*" Header="NavigateLink" CanUserSort="True" SortMemberPath="Line" Binding="{Binding NavigateLink}"/>
+            </DataGrid.Columns>
 
         </DataGrid>
-        
+
     </Grid>
 </Window>

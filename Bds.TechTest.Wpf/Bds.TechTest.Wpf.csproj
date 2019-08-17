@@ -72,6 +72,7 @@
     <Compile Include="SearchService\SearchResult.cs" />
     <Compile Include="SearchService\Wikipedia\WikipediaEngine.cs" />
     <Compile Include="SearchService\Wikipedia\WikipediaResult.cs" />
+    <Compile Include="SearchService\Wikipedia\WikiToSearchResultMapper.cs" />
     <Compile Include="UiUtils\DelegateCommand.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

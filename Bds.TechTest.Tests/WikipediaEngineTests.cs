@@ -1,6 +1,4 @@
-﻿using Bds.TechTest.Wpf.SearchService;
-using Bds.TechTest.Wpf.SearchService.Bds.TechTest;
-using Bds.TechTest.Wpf.SearchService.Wikipedia;
+﻿using Bds.TechTest.Wpf.SearchService.Wikipedia;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using NUnit.Framework;
@@ -36,15 +34,32 @@ namespace Bds.TechTest.Tests
             }";
             var result = JsonConvert.DeserializeObject<WikipediaResult>(example);
 
-            Assert.Multiple(() =>
+            Assert.That(result.Query.Results, Is.EquivalentTo(new[]{new WikipediaSearchResult
             {
-                Assert.That(result.Query.Results, Is.EquivalentTo(new[]{new WikipediaSearchResult
-                {
-                    PageId = 1,
-                    Snippet = "<span class=\"searchmatch\">Some</span> may refer to ...",
-                    Title = "Some",
-                    WordCount = 341
-                }, }));
+                PageId = 1,
+                Snippet = "<span class=\"searchmatch\">Some</span> may refer to ...",
+                Title = "Some",
+                WordCount = 341
+            }, }));
+        }
+        
+        [Test]
+        public void WikiMapperToSearchResultIsAppropiate()
+        {
+            var result = WikiToSearchResultMapper.Map(new WikipediaSearchResult
+            {
+                PageId = 1,
+                Snippet = "<span class=\"searchmatch\">Some</span> may refer to ...",
+                Title = "Some",
+                WordCount = 341
+            });
+
+            Assert.Multiple(()=>
+            {
+                Assert.That(result.Title, Is.EqualTo("Some"));
+                Assert.That(result.Description, Is.EqualTo("Some may refer to ..."));
+                Assert.That(result.Source, Is.EqualTo("Wikipedia"));
+                Assert.That(result.NavigateLink, Is.EqualTo("1"));
             });
         }
 

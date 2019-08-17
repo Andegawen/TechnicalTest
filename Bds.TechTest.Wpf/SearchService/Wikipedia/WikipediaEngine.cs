@@ -39,7 +39,13 @@ namespace Bds.TechTest.Wpf.SearchService.Wikipedia
 
             var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             var results = JsonConvert.DeserializeObject<WikipediaResult>(json);
-            return results.Query.Results.Select(r => new SearchResult());
+            return results.Query.Results.Select(r => new SearchResult
+            {
+                Source = "Wikipedia",
+                Title =r.Title,
+                Description =r.Snippet,
+                NavigateLink = $"{r.PageId}"
+            });
         }
     }
 }

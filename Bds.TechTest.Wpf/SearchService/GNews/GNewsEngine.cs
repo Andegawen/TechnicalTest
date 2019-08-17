@@ -33,7 +33,13 @@ namespace Bds.TechTest.Wpf.SearchService.GNews
 
                 var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                 var results = JsonConvert.DeserializeObject<GNewsResult>(json);
-                return results.Articles.Select(r => new SearchResult());
+                return results.Articles.Select(r => new SearchResult
+                {
+                    Source = $"GNews:{r.Source?.Name}",
+                    Title = r.Title,
+                    Description = r.Description,
+                    NavigateLink = r.SourceUrl
+                });
             }
         }
 

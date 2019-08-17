@@ -16,7 +16,7 @@ namespace Bds.TechTest.Wpf.SearchService
 
         public async Task<IEnumerable<SearchResult>> GetResult(string phrase)
         {
-            var tasks = _engines.Select(e => e.GetResults(phrase)).ToArray();
+            var tasks = _engines.Select(e => e.GetSearchResults(phrase)).ToArray();
             await Task.Run(()=>Task.WaitAll(tasks));
             return tasks.SelectMany(t => t.Result);
         }

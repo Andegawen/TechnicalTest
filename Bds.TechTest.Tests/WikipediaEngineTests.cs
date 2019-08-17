@@ -53,9 +53,9 @@ namespace Bds.TechTest.Tests
         {
             var engine = new WikipediaEngine();
 
-            TestDelegate td = () => engine.GetResults("xxx").GetAwaiter().GetResult();
+            AsyncTestDelegate td = async () => await engine.GetSearchResults("xxx");
 
-            Assert.DoesNotThrow(td);
+            Assert.DoesNotThrowAsync(td);
         }
     }
 }

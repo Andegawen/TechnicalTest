@@ -10,7 +10,7 @@ namespace Bds.TechTest.Wpf.SearchService
     {
         public interface ISearchEngine
         {
-            Task<IEnumerable<SearchResult>> GetResults(string phrase);
+            Task<IEnumerable<SearchResult>> GetSearchResults(string phrase);
         }
     }
 }

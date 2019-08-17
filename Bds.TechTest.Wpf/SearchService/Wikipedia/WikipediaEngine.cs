@@ -27,7 +27,7 @@ namespace Bds.TechTest.Wpf.SearchService.Wikipedia
             };
         }
 
-        public async Task<IEnumerable<SearchResult>> GetResults(string phrase)
+        public async Task<IEnumerable<SearchResult>> GetSearchResults(string phrase)
         {
             var url = "https://en.wikipedia.org/w/api.php";
             var parameters = GetParams(phrase);

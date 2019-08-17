@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Bds.TechTest.Wpf.SearchService.Bds.TechTest;
+using Bds.TechTest.Wpf.SearchService.GNews;
 using Bds.TechTest.Wpf.SearchService.Wikipedia;
 
 namespace Bds.TechTest.Wpf.SearchService
@@ -9,6 +10,7 @@ namespace Bds.TechTest.Wpf.SearchService
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<WikipediaEngine>().As<ISearchEngine>().SingleInstance();
+            builder.RegisterType<GNewsEngine>().As<ISearchEngine>().SingleInstance();
             builder.RegisterType<SearchAggregatorService>().AsSelf().SingleInstance();
         }
     }

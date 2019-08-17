@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bds.TechTest.Wpf"
         xmlns:converters="clr-namespace:Bds.TechTest.Wpf.Converters"
+        xmlns:uiUtils="clr-namespace:Bds.TechTest.Wpf.UiUtils"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" MinHeight="300" MinWidth="300">
     <d:Window.DataContext>
         <local:MainViewModel/>
     </d:Window.DataContext>
@@ -26,10 +28,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="50"/>
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0" Text="{Binding Phrase}"/>
+            <TextBox Grid.Column="0" Text="{Binding Phrase, UpdateSourceTrigger=PropertyChanged}"/>
             <Button Grid.Column="1" Content="Search" Command="{Binding SearchCommand}"/>
         </Grid>
-
         <DataGrid Grid.Row="2" ItemsSource="{Binding SearchResults}" 
                   AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"
                   CanUserResizeColumns="True" CanUserReorderColumns="True" RowHeaderWidth="0" HeadersVisibility="Column"
@@ -40,8 +41,9 @@
                 <DataGridTextColumn Width="*" Header="Description" CanUserSort="True" SortMemberPath="Title" Binding="{Binding Description}" />
                 <DataGridTextColumn Width="*" Header="NavigateLink" CanUserSort="True" SortMemberPath="Line" Binding="{Binding NavigateLink}"/>
             </DataGrid.Columns>
-
         </DataGrid>
-
+        <fa:ImageAwesome Grid.Row="2" Icon="Spinner" Spin="True" Visibility="{Binding Pending, Converter={StaticResource BooleanToVisibilityConverter}}"
+                         VerticalAlignment="Center" HorizontalAlignment="Center"
+                         Height="100" Width="100"/>
     </Grid>
 </Window>

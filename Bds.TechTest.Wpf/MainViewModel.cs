@@ -11,6 +11,7 @@ namespace Bds.TechTest.Wpf
     {
         private string _phrase;
         private IList<SearchResult> _searchResults;
+        private bool _pending = false;
 
         public MainViewModel(SearchAggregatorService searchAggregatorService)
         {
@@ -21,7 +22,7 @@ namespace Bds.TechTest.Wpf
                     SearchResults = (await searchAggregatorService.GetResult(Phrase)).ToList();
                     Pending = false;
                 }, 
-                _=>true);
+                _=>!Pending && !string.IsNullOrEmpty(Phrase));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -37,7 +38,16 @@ namespace Bds.TechTest.Wpf
             }
         }
 
-        public bool Pending { get; set; } = false;
+        public bool Pending
+        {
+            get => _pending;
+            set
+            {
+                _pending = value;
+                OnPropertyChanged();
+                SearchCommand.RaiseCanExecuteChanged();
+            }
+        }
 
         public IList<SearchResult> SearchResults
         {

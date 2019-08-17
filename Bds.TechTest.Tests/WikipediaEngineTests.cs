@@ -1,5 +1,6 @@
 ﻿using Bds.TechTest.Wpf.SearchService;
 using Bds.TechTest.Wpf.SearchService.Bds.TechTest;
+using Bds.TechTest.Wpf.SearchService.Wikipedia;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using NUnit.Framework;

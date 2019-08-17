@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Bds.TechTest.Wpf.SearchService.Bds.TechTest;
+using Bds.TechTest.Wpf.SearchService.Wikipedia;
 
 namespace Bds.TechTest.Wpf.SearchService
 {

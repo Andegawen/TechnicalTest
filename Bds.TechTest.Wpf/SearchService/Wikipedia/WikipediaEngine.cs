@@ -2,9 +2,10 @@
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Bds.TechTest.Wpf.SearchService.Bds.TechTest;
 using Newtonsoft.Json;
 
-namespace Bds.TechTest.Wpf.SearchService.Bds.TechTest
+namespace Bds.TechTest.Wpf.SearchService.Wikipedia
 {
     /// <remarks>https://www.mediawiki.org/wiki/API:Search#API_documentation</remarks>
     internal class WikipediaEngine : ISearchEngine

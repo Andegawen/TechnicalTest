@@ -65,8 +65,8 @@
     <Compile Include="SearchService\SearchAggregatorService.cs" />
     <Compile Include="SearchService\SearchModule.cs" />
     <Compile Include="SearchService\SearchResult.cs" />
-    <Compile Include="SearchService\WikipediaEngine.cs" />
-    <Compile Include="SearchService\WikipediaResult.cs" />
+    <Compile Include="SearchService\Wikipedia\WikipediaEngine.cs" />
+    <Compile Include="SearchService\Wikipedia\WikipediaResult.cs" />
     <Compile Include="UiUtils\DelegateCommand.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

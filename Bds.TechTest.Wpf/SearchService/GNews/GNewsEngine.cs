@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Bds.TechTest.Wpf.SearchService.Bds.TechTest;
+using Newtonsoft.Json;
 
 namespace Bds.TechTest.Wpf.SearchService.GNews
 {
@@ -20,9 +21,25 @@ namespace Bds.TechTest.Wpf.SearchService.GNews
             httpClient = new HttpClient();
         }
 
+        public async Task<IEnumerable<SearchResult>> GetSearchResults(string phrase)
+        {
+            var url = GetUrl("https://newsapi.org/v2/everything", phrase);
+            using (var request = new HttpRequestMessage(HttpMethod.Get, url))
+            {
+                var response = await httpClient.SendAsync(request).ConfigureAwait(false);
+
+                if (!response.IsSuccessStatusCode)
+                    return new SearchResult[0];
+
+                var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                var results = JsonConvert.DeserializeObject<GNewsResult>(json);
+                return results.Articles.Select(r => new SearchResult());
+            }
+        }
+
         private static string GetUrl(string baseUrl, string phrase)
         {
-            using (var apiToken= GetApiToken())
+            using (var apiToken = GetApiToken())
             {
                 string password = new System.Net.NetworkCredential(string.Empty, apiToken).Password;
                 return $"{baseUrl}?q={phrase}&sortBy=popularity&apiKey={password}";
@@ -47,21 +64,5 @@ namespace Bds.TechTest.Wpf.SearchService.GNews
                 }
             }
         }
-
-        public async Task<IEnumerable<SearchResult>> GetSearchResults(string phrase)
-        {
-            var url = GetUrl("https://newsapi.org/v2/everything", phrase);
-            using (var request = new HttpRequestMessage(HttpMethod.Get, url))
-            {
-                var response = await httpClient.SendAsync(request).ConfigureAwait(false);
-
-                if (!response.IsSuccessStatusCode)
-                    return new SearchResult[0];
-                return new SearchResult[0];
-            }
-        }
     }
-
-        
-        
 }

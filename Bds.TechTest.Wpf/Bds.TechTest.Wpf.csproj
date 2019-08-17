@@ -63,6 +63,7 @@
     </ApplicationDefinition>
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="SearchService\GNews\GNewsEngine.cs" />
+    <Compile Include="SearchService\GNews\GNewsResult.cs" />
     <Compile Include="SearchService\SearchAggregatorService.cs" />
     <Compile Include="SearchService\SearchModule.cs" />
     <Compile Include="SearchService\SearchResult.cs" />

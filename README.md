@@ -1,10 +1,7 @@
 # Blackdot Solutions Technical Test
 
-This repository is just a starter to save you a little setup time when completing our technical test.
-It's entirely optional if you want to use it or not.
+This is a WPF application which will get results from two sources (Wikipedia & GNews).
+Code for `DelegateCommand` was copied&pasted (in the class link to source).
 
-To run the app run "dotnet run -p Bds.TechTest"
-To run tests run "dotnet test"
-
-
-Good luck
+Set `Bds.TechTest.Wpf` as startup project to run it.
+Each search needs to be invoked with search button which is disabled if there's no text in the textbox and during data fetch.
